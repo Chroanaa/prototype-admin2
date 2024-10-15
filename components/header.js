@@ -44,3 +44,20 @@ document.addEventListener("click", (e) => {
     window.location.href = "../Template/index.html";
   }
 });
+document.addEventListener("DOMContentLoaded", () => {
+  const currentUrl = window.location.href;
+  const chevronRight = document.querySelectorAll(".fa-chevron-right");
+  const homeLink = document.querySelector(".Home");
+  const replacementChevronRight = document.createElement("i");
+  replacementChevronRight.classList.add("fa-solid", "fa-chevron-left");
+
+  if (currentUrl.includes("Home")) {
+    homeLink.style.backgroundColor = "#0f2b4a";
+
+    chevronRight[0].replaceWith(replacementChevronRight);
+  } else if (currentUrl.includes("City%20Ordinance")) {
+    const ordinanceLink = document.querySelector(".ordinance");
+    ordinanceLink.style.backgroundColor = "#0f2b4a";
+    chevronRight[1].replaceWith(replacementChevronRight);
+  }
+});

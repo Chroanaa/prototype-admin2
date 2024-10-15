@@ -10,11 +10,16 @@ nav {
 nav > ul > li {
   list-style: none;
   margin-bottom: 1%;
-  background-color: lightblue;
+  background-color: #1e477d;
   width: 15%;
   padding: 1%;
+  color: white;
   border-radius: 25px;
   font-size: 25px;
+  position: relative; /* Add this to position the icon relative to the li */
+}
+nav > ul > li:hover {
+  background-color: #0f2b4a;
 }
 .logo {
   width: 5%;
@@ -35,9 +40,16 @@ nav > ul > li {
   margin-right: 3%;
 }
 .fa-chevron-right {
-  float: right;
-  margin-top: 6px;
+  position: absolute;
+  right: -30px; /* Start off-screen */
+  top: 50%;
+  transform: translateY(-50%);
+  transition: right 0.3s ease-in-out;
 }
+nav > ul > li:hover .fa-chevron-right {
+  right: 10px; /* Move to the desired position */
+}
+
 .search-container {
   position: absolute;
   top: 0;
@@ -63,6 +75,7 @@ nav > ul > li {
   background-color: #d9d9d9;
   border: none;
 }
+
 .search-input button:hover {
   background-color: #bfbfbf;
 }
@@ -79,7 +92,6 @@ nav > ul > li {
   flex-direction: column !important;
   align-items: center !important;
   justify-content: center !important;
-
   background-color: #f2f5f9 !important;
 }
 .card > a {

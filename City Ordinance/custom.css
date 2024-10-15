@@ -1,6 +1,6 @@
 .btn-primary {
   background-color: #e86767 !important;
-  border: none;
+  border: none !important;
   float: right;
   color: black;
   font-weight: bold;
@@ -8,12 +8,14 @@
   padding: 10px 20px;
 }
 .btn-primary:hover {
-  background-color: #e74f4f;
+  background-color: #e74f4f !important;
 }
 .ordinance-img {
   float: left;
 }
 .card {
+  width: 400px;
+  height: 300px;
   margin-bottom: 30px;
   border-radius: 20px !important;
   border: 1px solid black !important;
@@ -37,4 +39,6 @@
   flex-direction: row;
   flex-wrap: wrap;
   height: 100%;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
