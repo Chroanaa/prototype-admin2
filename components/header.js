@@ -41,7 +41,7 @@ document.addEventListener("click", (e) => {
     window.location.href = "../Request/Request.html";
   }
   if (e.target.classList.contains("template")) {
-    window.location.href = "../Template/index.html";
+    window.location.href = "../DocumentTemplate/DocumentTemplate.html";
   }
 });
 document.addEventListener("DOMContentLoaded", () => {
@@ -59,5 +59,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const ordinanceLink = document.querySelector(".ordinance");
     ordinanceLink.style.backgroundColor = "#0f2b4a";
     chevronRight[1].replaceWith(replacementChevronRight);
+  } else if (currentUrl.includes("Request")) {
+    const requestLink = document.querySelector(".request");
+    requestLink.style.backgroundColor = "#0f2b4a";
+    chevronRight[2].replaceWith(replacementChevronRight);
+  } else if (currentUrl.includes("DocumentTemplate")) {
+    const templateLink = document.querySelector(".template");
+    templateLink.style.backgroundColor = "#0f2b4a";
+    chevronRight[3].replaceWith(replacementChevronRight);
   }
 });

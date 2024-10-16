@@ -1,0 +1,7 @@
+td {
+  font-size: 2rem;
+}
+.table-container {
+  max-height: 90%; /* Adjust the height as needed */
+  overflow-y: auto;
+}
