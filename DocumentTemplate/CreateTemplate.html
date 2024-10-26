@@ -39,8 +39,34 @@
     let Quill = window.Quill;
     Quill.register("modules/imageResize", QuillResizeModule);
     const FontAttributor = Quill.import("attributors/class/font");
+    const Size = Quill.import("attributors/style/size");
+    const qlLabel = document.querySelector(".ql-picker-label");
+    Size.whitelist = [
+      "8px",
+      "9px",
+      "10px",
+      "11px",
+      "12px",
+      "14px",
+      "16px",
+      "18px",
+      "20px",
+      "22px",
+      "24px",
+      "26px",
+      "28px",
+      "30px",
+      "32px",
+      "36px",
+      "40px",
+      "48px",
+      "60px",
+      "72px",
+    ];
     FontAttributor.whitelist = ["Sans-serif", "monospace", "ubuntu"];
     Quill.register(FontAttributor, true);
+    Quill.register(Size, true);
+
     let quill = new Quill("#editor", {
       theme: "snow",
       modules: {
@@ -58,7 +84,7 @@
           [{ script: "sub" }, { script: "super" }], // superscript/subscript
           [{ indent: "-1" }, { indent: "+1" }], // outdent/indent
           [{ direction: "rtl" }],
-          [{ size: ["small", false, "large", "huge"] }],
+          [{ size: Size.whitelist }],
           [{ color: [] }, { background: [] }], // dropdown with defaults from theme
           [
             {
