@@ -7,3 +7,26 @@
   cursor: pointer;
   transform: scale(1.05);
 }
+.ql-snow .ql-picker-options .ql-picker-item {
+  font-family: attr(data-value);
+}
+&::before {
+  content: attr(data-value) !important;
+}
+
+.ql-snow .ql-picker.ql-font .ql-picker-label::before,
+.ql-snow .ql-picker.ql-font .ql-picker-item::before {
+  content: attr(data-value) !important;
+}
+.ql-font-roboto {
+  font-family: sans-serif;
+}
+.ql-font-monospace {
+  font-family: monospace;
+}
+.ql-font-Arial {
+  font-family: Arial;
+}
+.ql-font-ubuntu {
+  font-family: "Ubuntu";
+}

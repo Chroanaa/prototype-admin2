@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Make A Document</title>
+  </head>
+  <link
+    href="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.snow.css"
+    rel="stylesheet"
+  />
+  <link
+    crossorigin="anonymous"
+    integrity="sha384-7kltdnODhBho8GSWnwD9l9rilXkpuia4Anp4TKHPOrp8/MS/+083g4it4MYED/hc"
+    href="http://lib.baomitu.com/quill/2.0.0-dev.3/quill.snow.min.css"
+    rel="stylesheet"
+  />
+  <script
+    crossorigin="anonymous"
+    integrity="sha384-MDio1/ps0nK1tabxUqZ+1w2NM9faPltR1mDqXcNleeuiSi0KBXqIsWofIp4r5A0+"
+    src="http://lib.baomitu.com/quill/2.0.0-dev.3/quill.min.js"
+  ></script>
+  <script src="https://cdn.jsdelivr.net/gh/scrapooo/quill-resize-module@1.0.2/dist/quill-resize-module.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css?family=Roboto"
+    rel="stylesheet"
+  />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="custom.css" />
+  <body>
+    <div id="editor"></div>
+  </body>
+  <script type="module">
+    let Quill = window.Quill;
+    Quill.register("modules/imageResize", QuillResizeModule);
+    const FontAttributor = Quill.import("attributors/class/font");
+    FontAttributor.whitelist = ["Sans-serif", "monospace", "ubuntu"];
+    Quill.register(FontAttributor, true);
+    let quill = new Quill("#editor", {
+      theme: "snow",
+      modules: {
+        toolbar: [
+          [{ header: [1, 2, false] }],
+          ["bold", "italic", "underline"],
+          ["image", "code-block"],
+          [{ list: "ordered" }, { list: "bullet" }],
+          ["link"],
+
+          ["blockquote", "code-block"],
+          ["formula"],
+          ["video"],
+          ["clean"],
+          [{ script: "sub" }, { script: "super" }], // superscript/subscript
+          [{ indent: "-1" }, { indent: "+1" }], // outdent/indent
+          [{ direction: "rtl" }],
+          [{ size: ["small", false, "large", "huge"] }],
+          [{ color: [] }, { background: [] }], // dropdown with defaults from theme
+          [
+            {
+              font: ["Sans-serif", "monospace", "ubuntu"],
+            },
+          ],
+          [{ align: [] }],
+          ["clean"],
+        ],
+        imageResize: {
+          displaySize: true,
+        },
+      },
+    });
+  </script>
+</html>
