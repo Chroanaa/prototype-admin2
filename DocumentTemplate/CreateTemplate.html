@@ -43,7 +43,7 @@
   />
   <link rel="stylesheet" href="custom.css" />
   <body>
-    <h1 id="docName">Document Name</h1>
+    <h1 id="docName"></h1>
     <div id="editor"></div>
 
     <button
@@ -214,14 +214,15 @@
           id:id,
           name: templateName,
           content: templateContents,
-          createdAt: new Date().toISOString(),
-          updatedAt: new Date().toISOString(),
+          createdAt: new Date().toLocaleString(),
+          updatedAt: new Date().toLocaleString(),
         },
       });
     };
 
     saveBtn.addEventListener("click",  () => {
       saveAsTemplate(arr.length + 1, templateName.value, quill.root.innerHTML);
+      
     });
     onValue(ref(db, "templates"), (snapshot) => {
         const data = snapshot.val();

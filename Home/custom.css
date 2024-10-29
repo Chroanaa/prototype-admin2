@@ -7,3 +7,6 @@
   cursor: pointer;
   transform: scale(1.05);
 }
+.row{
+  overflow: auto;
+}
