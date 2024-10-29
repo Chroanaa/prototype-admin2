@@ -25,6 +25,7 @@
          <table class="table table-hover table-striped">
             <thead>
                 <tr>
+                <th scope="col">ID</th>
                 <th scope="col">Template Name</th>
                 <th scope="col">Created At</th>
                 <th scope="col">Updated At</th>
@@ -52,7 +53,7 @@
     // Your web app's Firebase configuration
     const firebaseConfig = {
       apiKey: "AIzaSyCcHkCNUYlWvB0tAOZXXSKYfKWcOw11aRU",
-      authDomain: "saving-documents-9f23d.firebaseapp.com",
+      authDomain: "saving- documents-9f23d.firebaseapp.com",
       projectId: "saving-documents-9f23d",
       storageBucket: "saving-documents-9f23d.appspot.com",
       messagingSenderId: "70976741238",
@@ -68,24 +69,37 @@
     const templateRef = ref(database, "templates");
     onValue(templateRef, (snapshot) => {
       const data = snapshot.val();
-      console.log(data);
       if (data) {
         const templateKeys = Object.keys(data);
         templateList.innerHTML = templateKeys
           .map((templateKeys) => {
             const template = Object.values(data[templateKeys])[0];
-
-            return `
-            <tr>
+            return( `
+            <tr class = "template" data-id = "${template.id}">
+              <td>${template.id}</td>
               <td>${template.name}</td>
               <td>${template.createdAt}</td>
-              <td>${template.updateDate}</td>
+              <td>${template.updatedAt}</td>
+              <td><button id = "viewBtn">Edit</button></td>
             </tr>
-            `     
-
+            ` ) 
+            
           })
           .join("");
+          const view = document.querySelectorAll("#viewBtn")
+           view.forEach((vBtn)=>{
+             vBtn.addEventListener("click",(e)=>{
+              // get the current data id 
+              const TD = e.target.parentElement
+        const TR = TD.parentElement
+        const id = TR.getAttribute("data-id")
+        //go to editTemplate to the current id dataset
+        window.location.href = `./EditTemplate.html?id=${id}`
+             })
+           })
       }
     });
+   
+  
   </script>
 </html>

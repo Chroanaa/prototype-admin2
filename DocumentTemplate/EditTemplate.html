@@ -52,7 +52,7 @@
       data-toggle="modal"
       data-target="#exampleModal"
     >
-      Save As Template
+      Save changes
     </button>
 
     <!-- Modal -->
@@ -67,23 +67,11 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Save as Template</h5>
-            <button
-              type="button"
-              class="close"
-              data-dismiss="modal"
-              aria-label="Close"
-            >
-              <span aria-hidden="true">&times;</span>
-            </button>
+            <h5 class="modal-title" id="exampleModalLabel">Save current changes</h5>
           </div>
           <div class="modal-body">
-            <input
-              type="text"
-              class="form-control"
-              id="templateName"
-              placeholder="Enter the name of the template"
-            />
+            <h3 class = "templateName"></h3>
+
           </div>
           <div class="modal-footer">
             <button
@@ -94,7 +82,7 @@
               Close
             </button>
             <button type="button" class="btn btn-primary" id="saveBtn">
-              Save as Template
+                save changes
             </button>
           </div>
         </div>
@@ -202,6 +190,9 @@
         },
       },
     });
+    //gets the current params id for fetching the current template for editing
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get("id");
   
     const docName = document.getElementById("docName");
     const templateName = document.getElementById("templateName");
@@ -211,17 +202,17 @@
     const saveAsTemplate = (id, templateName, templateContents) => {
       set(ref(db, `templates/${id}`), {
         template: {
-          id:id,
+          id: id,
           name: templateName,
-          content: templateContents,
-          createdAt: new Date().toISOString(),
-          updatedAt: new Date().toISOString(),
+          content:templateContents,
+          createdAt: new Date().toLocaleString(),
+          updatedAt: new Date().toLocaleString(),
         },
       });
     };
-
+   
     saveBtn.addEventListener("click",  () => {
-      saveAsTemplate(arr.length + 1, templateName.value, quill.root.innerHTML);
+      saveAsTemplate(id, docName.innerHTML, quill.root.innerHTML);
     });
     onValue(ref(db, "templates"), (snapshot) => {
         const data = snapshot.val();
@@ -233,6 +224,20 @@
           }
         }
       });
-    // currentTemplate();
+      //get the current template based on the params id
+      const getCurrentTemplate = (id) => {
+        get(child(ref(db, `templates/${id}`), "template")).then((snapshot) => {
+          if (snapshot.exists()) {
+            const data = snapshot.val();
+            console.log(data);
+            quill.root.innerHTML = data.content;
+            docName.innerHTML = data.name;
+            
+          } else {
+            console.log("No data available");
+          }
+        });
+      }
+      getCurrentTemplate(id);
   </script>
 </html>
